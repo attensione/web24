@@ -12,8 +12,8 @@ class CompanyController extends Controller
 
     private function validateRequestData($data) {
         $validated = $data->validate([
-            'name' => 'required|string|max:255',
             'nip' => 'required|string|digits:10|unique:companies',
+            'name' => 'required|string|max:255',
             'address' => 'required|string|max:255',
             'city' => 'required|string|max:255',
             'postal_code' => 'required|regex:/^\d{2}-\d{3}$/'
@@ -38,7 +38,7 @@ class CompanyController extends Controller
     }
 
     public function show($id) {
-        $company = $this->companyRepository->getById($id);
+        $company = $this->companyRepository->getByPrimary($id);
         return response()->json($company, 200);
     }
 

@@ -45,8 +45,10 @@ class EmployeeController extends Controller
     {
         try {
             $validated = $this->validateRequestData($request);
-            $employee = $this->employeeRepository->create($validated);
-            return response()->json(['Successful store "Employee" data: '.$request], 201);
+            if($validated) {
+                $employee = $this->employeeRepository->create($validated);
+                return response()->json(['Successful store "Employee" data: '.$request], 201);
+            }
         }
         catch(\Exception $e) {
             return response()->json($e->getMessage(), 404);

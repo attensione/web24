@@ -22,10 +22,10 @@ class CompanyRepository implements CompanyRepositoryInterface
         return $this->model->all();
     }
 
-    public function getById($id)
+    public function getByPrimary($nip)
     {
         try {
-            return $this->model->findOrFail($id);
+            return $this->model->where('nip', $nip)->get();
         }
         catch(\Exception $e) {
             return response()->json($e->getMessage(), 404);
@@ -37,13 +37,14 @@ class CompanyRepository implements CompanyRepositoryInterface
         return $this->model->create($data);
     }
 
-    public function update($id, array $data)
+    public function update($nip, array $data)
     {
-        return $this->model->findOrFail($id)->update($data);
+        return $this->model->where('nip', $nip)->update($data);
     }
 
-    public function delete($id)
+    public function delete($nip)
     {
+        $id = $this->model->where('nip', $nip)->get('id');
         return $this->model->destroy($id);
     }
 }

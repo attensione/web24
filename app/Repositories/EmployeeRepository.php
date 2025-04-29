@@ -34,7 +34,8 @@ class EmployeeRepository implements EmployeeRepositoryInterface
 
     public function create(array $data)
     {
-        return $this->model->create($data);
+        return true;
+        //return $this->model->create($data);
     }
 
     public function update($id, array $data)

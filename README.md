@@ -18,16 +18,16 @@ Rejestracja nowego użytkownika: https://dev.aone.ovh/api/register
 INFO - Pobieramy token i nim się logujemy do dalszych API używając Autoryzacji Bearer Token
 FIRMY:
 Pobieranie wszystkich firm przez GET: https://dev.aone.ovh/api/v1/companies //ten pierwszy endpoint do zamkniecia po zakonczeniu testow na frontendzie
-Wyświetlanie danej firmy po id przez GET: https://dev.aone.ovh/api/v1/companies/{id_firmy}
+Wyświetlanie danej firmy po id przez GET: https://dev.aone.ovh/api/v1/companies/{nip_firmy}
 Zapisywanie nowych firm przez POST: https://dev.aone.ovh/api/v1/companies
-Aktualizacja danych firm przez PATCH: https://dev.aone.ovh/api/v1/companies/{id_firmy}
-Usuwanie firmy przez DELETE: https://dev.aone.ovh/api/v1/companies/{id_firmy}
+Aktualizacja danych firm przez PATCH: https://dev.aone.ovh/api/v1/companies/{nip_firmy}
+Usuwanie firmy przez DELETE: https://dev.aone.ovh/api/v1/companies/{nip_firmy}
 PRACOWNICY:
-Pobieranie wszystkich pracowników dla danej firmy metoda GET: https://dev.aone.ovh/api/v1/companies/{id_firmy}/employees
-Pobieranie konkretnego pracownika: https://dev.aone.ovh/api/v1/companies/{id_firmy}/employees/{id_pracownika}
-Zapisywanie nowego pracownika metoda POST: https://dev.aone.ovh/api/v1/companies/{id_firmy}/employees
-Aktualizacja danych pracownika przez PATCH: https://dev.aone.ovh/api/v1/companies/{id_firmy}/employees/{id_pracownika}
-Usuwanie pracownika przez DELETE: https://dev.aone.ovh/api/v1/companies/{id_firmy}/employees/{id_pracownika}
+Pobieranie wszystkich pracowników dla danej firmy metoda GET: https://dev.aone.ovh/api/v1/companies/{nip_firmy}/employees
+Pobieranie konkretnego pracownika: https://dev.aone.ovh/api/v1/companies/{nip_firmy}/employees/{id_pracownika}
+Zapisywanie nowego pracownika metoda POST: https://dev.aone.ovh/api/v1/companies/{nip_firmy}/employees
+Aktualizacja danych pracownika przez PATCH: https://dev.aone.ovh/api/v1/companies/{nip_firmy}/employees/{id_pracownika}
+Usuwanie pracownika przez DELETE: https://dev.aone.ovh/api/v1/companies/{nip_firmy}/employees/{id_pracownika}
 
 ### Tworzenie firmy
 curl -X POST http://localhost/api/v1/companies \
