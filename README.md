@@ -13,12 +13,13 @@ Użyta w projekcie baza danych to SQLite
 
 ### endpointy
 FIRMY:
-Pobieranie wszystkich firm przez GET: https://dev.aone.ovh/api/v1/companies
+Pobieranie wszystkich firm przez GET: https://dev.aone.ovh/api/v1/companies //ten pierwszy endpoint do zamkniecia po zakonczeniu testow na frontendzie
 Wyświetlanie danej firmy po id przez GET: https://dev.aone.ovh/api/v1/companies/{id_firmy}
 Zapisywanie nowych firm przez POST: https://dev.aone.ovh/api/v1/companies
 Aktualizacja danych firm przez PATCH: https://dev.aone.ovh/api/v1/companies/{id_firmy}
-Usówanie firmy przez DELETE: https://dev.aone.ovh/api/v1/companies/{id_firmy}
+Usuwanie firmy przez DELETE: https://dev.aone.ovh/api/v1/companies/{id_firmy}
 PRACOWNICY:
+
 
 ### Tworzenie firmy
 curl -X POST http://localhost/api/v1/companies \
