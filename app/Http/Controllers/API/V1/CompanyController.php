@@ -59,7 +59,7 @@ class CompanyController extends Controller
         try {
             $validated = $this->validateRequestData($request);
             $company = $this->companyRepository->update($nip, $validated);
-            return response()->json(['Successful update "Company" with id: '.$id,'New Company data:'.$request], 201);
+            return response()->json(['Successful update "Company" with nip: '.$nip,'New Company data:'.$request], 201);
         }
         catch(\Exception $e) {
             return response()->json($e->getMessage(), 500);
@@ -69,7 +69,7 @@ class CompanyController extends Controller
     public function destroy($nip) {
         try {
             $company = $this->companyRepository->delete($nip);
-            return response()->json('Successful delete "Company" with id: '.$company, 200);
+            return response()->json('Successful delete "Company" with nip: '.$nip, 200);
         }
         catch(\Exception $e) {
             return response()->json($e->getMessage(), 500);
