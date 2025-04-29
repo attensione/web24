@@ -37,8 +37,8 @@ class CompanyController extends Controller
         }
     }
 
-    public function show($id) {
-        $company = $this->companyRepository->getByPrimary($id);
+    public function show($nip) {
+        $company = $this->companyRepository->getByNip($nip);
         return response()->json($company, 200);
     }
 
@@ -54,11 +54,11 @@ class CompanyController extends Controller
         }
     }
 
-    public function update($id, Request $request)
+    public function update($nip, Request $request)
     {
         try {
             $validated = $this->validateRequestData($request);
-            $company = $this->companyRepository->update($id, $validated);
+            $company = $this->companyRepository->update($nip, $validated);
             return response()->json(['Successful update "Company" with id: '.$id,'New Company data:'.$request], 201);
         }
         catch(\Exception $e) {
@@ -66,9 +66,9 @@ class CompanyController extends Controller
         }
     }
 
-    public function destroy($id) {
+    public function destroy($nip) {
         try {
-            $company = $this->companyRepository->delete($id);
+            $company = $this->companyRepository->delete($nip);
             return response()->json('Successful delete "Company" with id: '.$company, 200);
         }
         catch(\Exception $e) {

@@ -22,7 +22,7 @@ class CompanyRepository implements CompanyRepositoryInterface
         return $this->model->all();
     }
 
-    public function getByPrimary($nip)
+    public function getByNip($nip)
     {
         try {
             return $this->model->where('nip', $nip)->get();
