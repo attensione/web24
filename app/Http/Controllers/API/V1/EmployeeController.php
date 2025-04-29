@@ -25,7 +25,7 @@ class EmployeeController extends Controller
         $this->employeeRepository = $employeeRepository;
     }
 
-    public function index()
+    public function index($nip)
     {
         try {
             $employee = $this->employeeRepository->getAll();
@@ -36,18 +36,23 @@ class EmployeeController extends Controller
         }
     }
 
-    public function show($id) {
-        $employee = $this->employeeRepository->getById($id);
+    public function show($nip, $employee_id) {
+        $employee = $this->employeeRepository->getById($nip, $employee_id);
         return response()->json($employee, 200);
     }
 
-    public function store(Request $request)
+    public function store($nip, Request $request)
     {
         try {
             $validated = $this->validateRequestData($request);
             if($validated) {
-                $employee = $this->employeeRepository->create($validated);
-                return response()->json(['Successful store "Employee" data: '.$request], 201);
+                $company = new Company();
+                $company_id = $company->where('nip', $nip)->get('id');
+                $data = array_merge([
+                    'company_id' => $company_id[0]->id
+                ], $validated);
+                $this->employeeRepository->create($data);
+                return response()->json('Successful store "Employee" data: '.$data, 201);
             }
         }
         catch(\Exception $e) {

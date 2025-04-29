@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Repositories\Interfaces\EmployeeRepositoryInterface;
+use App\Models\Company;
 use App\Models\Employee;
 
 /**
@@ -22,10 +23,10 @@ class EmployeeRepository implements EmployeeRepositoryInterface
         return $this->model->all();
     }
 
-    public function getById($id)
+    public function getById($nip, $employee_id)
     {
         try {
-            return $this->model->findOrFail($id);
+            return $this->model->findOrFail($employee_id);
         }
         catch(\Exception $e) {
             return response()->json($e->getMessage(), 404);
@@ -34,8 +35,7 @@ class EmployeeRepository implements EmployeeRepositoryInterface
 
     public function create(array $data)
     {
-        return true;
-        //return $this->model->create($data);
+        return $this->model->create($data);
     }
 
     public function update($id, array $data)
