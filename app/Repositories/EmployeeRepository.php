@@ -18,9 +18,11 @@ class EmployeeRepository implements EmployeeRepositoryInterface
         $this->model = $employee;
     }
 
-    public function getAll()
+    public function getAll($nip)
     {
-        return $this->model->all();
+        $company = new Company();
+        $company_id = $company->where('nip', $nip)->get('id');
+        return $this->model->where('company_id', $nip)->get();
     }
 
     public function getById($nip, $employee_id)
@@ -33,8 +35,13 @@ class EmployeeRepository implements EmployeeRepositoryInterface
         }
     }
 
-    public function create(array $data)
+    public function create($nip, array $data)
     {
+        $company = new Company();
+        $company_id = $company->where('nip', $nip)->get('id');
+        $data = array_merge([
+            'company_id' => $company_id[0]->id
+        ], $data);
         return $this->model->create($data);
     }
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API\V1;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Repositories\Interfaces\EmployeeRepositoryInterface;
+use App\Models\Company;
 
 class EmployeeController extends Controller
 {
@@ -28,7 +29,7 @@ class EmployeeController extends Controller
     public function index($nip)
     {
         try {
-            $employee = $this->employeeRepository->getAll();
+            $employee = $this->employeeRepository->getAll($nip);
             return response()->json($employee, 200);
         }
         catch(\Exception $e) {
@@ -46,13 +47,8 @@ class EmployeeController extends Controller
         try {
             $validated = $this->validateRequestData($request);
             if($validated) {
-                $company = new Company();
-                $company_id = $company->where('nip', $nip)->get('id');
-                $data = array_merge([
-                    'company_id' => $company_id[0]->id
-                ], $validated);
-                $this->employeeRepository->create($data);
-                return response()->json('Successful store "Employee" data: '.$data, 201);
+                $this->employeeRepository->create($nip, $validated);
+                return response()->json('Successful store "Employee" data: '.$validated, 201);
             }
         }
         catch(\Exception $e) {
